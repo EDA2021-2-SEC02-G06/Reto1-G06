@@ -74,8 +74,8 @@ def getLastArtist(catalog):
     return bestbooks
 
 def getLastObras(catalog):
-    bestbooks = model.getLastArtist(catalog)
-    return bestbooks
+    bestbook = model.getLastArtist(catalog)
+    return bestbook
 # Funciones de ordenamiento
 
 # Funciones de consulta sobre el catálogo
