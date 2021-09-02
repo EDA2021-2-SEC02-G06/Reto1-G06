@@ -68,12 +68,12 @@ def getLastArtist(catalog):
     Retorna los mejores libros
     """
     artistas = catalog['artist']
-    lastartist = lt.newList()
+    lastartist = []
     num = lt.size(catalog["artist"])
     for x in range(0, 3):
         last = num - x
         book = lt.getElement(artistas, last)
-        lt.addLast(lastartist, book)
+        lastartist.append(book)
     
     return lastartist 
 
