@@ -38,10 +38,9 @@ los mismos.
 # Construccion de modelos
 def newCatalog():
     """
-    Inicializa el catálogo de libros. Crea una lista vacia para guardar
-    todos los libros, adicionalmente, crea una lista vacia para los autores,
-    una lista vacia para los generos y una lista vacia para la asociación
-    generos y libros. Retorna el catalogo inicializado.
+    Inicializa el catálogo que contiene listas y obras. Crea una lista vacia para guardar
+    todos los artistas, adicionalmente, crea una lista vacia para las obras. 
+    Retorna el catalogo inicializado.
     """
     catalog = {'artist': None,
                'obras': None,
@@ -55,17 +54,24 @@ def newCatalog():
     return catalog
 
 # Funciones para agregar informacion al catalogo
-def addArtist(catalog, book):
+def addArtist(catalog, artista):
+    """
+    Función encargada de añadir los artistas a la lista de artistas en el catalogo.
+    """
     # Se adiciona el libro a la lista de libros
-    lt.addLast(catalog['artist'], book)
+    lt.addLast(catalog['artist'], artista)
  
-def addObras(catalog, book):
+def addObras(catalog, obras):
+    """
+    Función encargada de añadir las obras a la lista de obras en el catalogo.
+    """
     # Se adiciona el libro a la lista de libros
-    lt.addLast(catalog['obras'], book)   
+    lt.addLast(catalog['obras'], obras)   
 
 def getLastArtist(catalog):
     """
-    Retorna los mejores libros
+    Retorna la lista con los últimos tres artistas de la lista de 
+    artistas.
     """
     artistas = catalog['artist']
     lastartist = []
@@ -81,8 +87,10 @@ def getLastArtist(catalog):
 
 def getLastObras(catalog):
     """
-    Retorna los mejores libros
+    Retorna la lista con las últimas tres obras de la lista de 
+    artistas.
     """
+    
     artworks = catalog['obras']
     lastobras = []
     num = lt.size(catalog["obras"])

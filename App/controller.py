@@ -32,7 +32,7 @@ El controlador se encarga de mediar entre la vista y el modelo.
 
 def initCatalog():
     """
-    Llama la funcion de inicializacion del catalogo del modelo.
+    Llama la funcion de inicializacion del catalogo.
     """
     catalog = model.newCatalog()
     return catalog
@@ -49,33 +49,41 @@ def loadData(catalog):
 
 def loadArtist(catalog):
     """
-    Carga los libros del archivo.  Por cada libro se toman sus autores y por
-    cada uno de ellos, se crea en la lista de autores, a dicho autor y una
-    referencia al libro que se esta procesando.
+    Carga los artistas del archivo. Se carga el CSV en una variable, posteriormente 
+    se lee el archivo y se cicla para añadir el artista a una lista con la llamada a
+    la función addArtist.
     """
-    booksfile = cf.data_dir + 'MOMA/Artists-utf8-small.csv'
-    input_file = csv.DictReader(open(booksfile, encoding='utf-8'))
-    for book in input_file:
-        model.addArtist(catalog, book)
+    artistfile = cf.data_dir + 'MOMA/Artists-utf8-small.csv'
+    input_file = csv.DictReader(open(artistfile, encoding='utf-8'))
+    for artista in input_file:
+        model.addArtist(catalog, artista)
 
 def loadObras(catalog):
     """
-    Carga los libros del archivo.  Por cada libro se toman sus autores y por
-    cada uno de ellos, se crea en la lista de autores, a dicho autor y una
-    referencia al libro que se esta procesando.
+    Carga las obras del archivo. Se carga el CSV en una variable, posteriormente 
+    se lee el archivo y se cicla para añadir la obra a una lista con la llamada a
+    la función addObras.
     """
-    booksfile = cf.data_dir + 'MOMA/Artworks-utf8-small.csv'
-    input_file = csv.DictReader(open(booksfile, encoding='utf-8'))
-    for book in input_file:
-        model.addObras(catalog, book)
+    obrasfile = cf.data_dir + 'MOMA/Artworks-utf8-small.csv'
+    input_file = csv.DictReader(open(obrasfile, encoding='utf-8'))
+    for obra in input_file:
+        model.addObras(catalog, obra)
 
 def getLastArtist(catalog):
-    bestbooks = model.getLastArtist(catalog)
-    return bestbooks
+    """
+    Llama a la función getLastArtist de model y retorna los valores de la misma
+    en una variable.
+    """
+    lastartist = model.getLastArtist(catalog)
+    return lastartist
 
 def getLastObras(catalog):
-    bestbook = model.getLastObras(catalog)
-    return bestbook
+    """
+    Llama a la función getLastObras de model y retorna los valores de la misma
+    en una variable.
+    """
+    lasobras = model.getLastObras(catalog)
+    return lasobras
 # Funciones de ordenamiento
 
 # Funciones de consulta sobre el catálogo

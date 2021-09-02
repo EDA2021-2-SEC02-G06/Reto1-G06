@@ -47,13 +47,13 @@ def printMenu():
 
 def initCatalog():
     """
-    Inicializa el catalogo de libros
+    Llama a la función contenida en controller encargada de inicializar el catálogo de libros.
     """
     return controller.initCatalog()
 
 def loadData(catalog):
     """
-    Carga los libros en la estructura de datos
+    Llama a la función contenida en controller encargada de cargar los datos.
     """
     controller.loadData(catalog)
 
