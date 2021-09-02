@@ -47,22 +47,53 @@ def newCatalog():
                'obras': None,
                }
 
-    catalog['artist'] = lt.newList()
+    catalog['artist'] = lt.newList('SINGLE_LINKED',
+                                    cmpfunction=None)
     catalog['obras'] = lt.newList('SINGLE_LINKED',
-                                    cmpfunction=compareauthors)
+                                    cmpfunction=None)
 
     return catalog
 
 # Funciones para agregar informacion al catalogo
-def addBook(catalog, book):
+def addArtist(catalog, book):
     # Se adiciona el libro a la lista de libros
     lt.addLast(catalog['artist'], book)
-    # Se obtienen los autores del libro
-    authors = book['obras'].split(",")
-    # Cada autor, se crea en la lista de libros del catalogo, y se
-    # crea un libro en la lista de dicho autor (apuntador al libro)
-    for author in authors:
-        addBookAuthor(catalog, author.strip(), book)
+ 
+def addObras(catalog, book):
+    # Se adiciona el libro a la lista de libros
+    lt.addLast(catalog['obras'], book)   
+
+def getLastArtist(catalog):
+    """
+    Retorna los mejores libros
+    """
+    artistas = catalog['artist']
+    lastartist = []
+    num = lt.size(catalog["artist"])
+    i = 0
+    while i < 3:
+        ultimos = num - i
+        book = lt.getElement(artistas, ultimos)
+        lastartist.append(book)
+        i += 1
+    
+    return lastartist 
+
+def getLastObras(catalog):
+    """
+    Retorna los mejores libros
+    """
+    artworks = catalog['obras']
+    lastobras = []
+    num = lt.size(catalog["obras"])
+    i = 0
+    while i < 3:
+        ultimos = num - i
+        book = lt.getElement(artworks, ultimos)
+        lastobras.append(book)
+        i += 1
+    
+    return lastobras
 
 # Funciones para creacion de datos
 
