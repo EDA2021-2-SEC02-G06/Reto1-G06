@@ -71,8 +71,8 @@ def getLastArtist(catalog):
     lastartist = lt.newList()
     num = lt.size(catalog["artist"])
 
-    i = 1
-    while i < 3:
+    i = 0
+    while i < 2:
         book = lt.getElement(artistas, num-i)
         lt.addLast(lastartist, book)
         i += 1
