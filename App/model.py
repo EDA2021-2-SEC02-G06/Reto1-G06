@@ -79,6 +79,22 @@ def getLastArtist(catalog):
     
     return lastartist 
 
+def getLastObras(catalog):
+    """
+    Retorna los mejores libros
+    """
+    artworks = catalog['obras']
+    lastobras = []
+    num = lt.size(catalog["obras"])
+    i = 0
+    while i < 3:
+        ultimos = num - i
+        book = lt.getElement(artworks, ultimos)
+        lastobras.append(book)
+        i += 1
+    
+    return lastobras
+
 # Funciones para creacion de datos
 
 # Funciones de consulta

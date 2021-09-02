@@ -72,6 +72,10 @@ def loadObras(catalog):
 def getLastArtist(catalog):
     bestbooks = model.getLastArtist(catalog)
     return bestbooks
+
+def getLastObras(catalog):
+    bestbooks = model.getLastArtist(catalog)
+    return bestbooks
 # Funciones de ordenamiento
 
 # Funciones de consulta sobre el catálogo
