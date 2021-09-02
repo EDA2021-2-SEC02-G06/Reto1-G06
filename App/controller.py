@@ -38,7 +38,36 @@ def initCatalog():
     return catalog
     
 # Funciones para la carga de datos
+def loadData(catalog):
+    """
+    Carga los datos de los archivos y cargar los datos en la
+    estructura de datos
+    """
+    loadArtist(catalog)
+    loadObras(catalog)
 
+
+def loadArtist(catalog):
+    """
+    Carga los libros del archivo.  Por cada libro se toman sus autores y por
+    cada uno de ellos, se crea en la lista de autores, a dicho autor y una
+    referencia al libro que se esta procesando.
+    """
+    booksfile = cf.data_dir + 'MOMA/Artists-uft-small.csv'
+    input_file = csv.DictReader(open(booksfile, encoding='utf-8'))
+    for book in input_file:
+        model.addArtist(catalog, book)
+
+def loadObras(catalog):
+    """
+    Carga los libros del archivo.  Por cada libro se toman sus autores y por
+    cada uno de ellos, se crea en la lista de autores, a dicho autor y una
+    referencia al libro que se esta procesando.
+    """
+    booksfile = cf.data_dir + 'MOMA/Artworks-uft-small.csv'
+    input_file = csv.DictReader(open(booksfile, encoding='utf-8'))
+    for book in input_file:
+        model.addObras(catalog, book)
 # Funciones de ordenamiento
 
 # Funciones de consulta sobre el catálogo
