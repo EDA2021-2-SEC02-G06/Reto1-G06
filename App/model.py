@@ -63,13 +63,12 @@ def addObras(catalog, book):
     # Se adiciona el libro a la lista de libros
     lt.addLast(catalog['obras'], book)   
 
-def getLastArtist(catalog, number):
+def getLastArtist(catalog):
     """
     Retorna los mejores libros
     """
     artistas = catalog['artist']
     lastartist = lt.newList()
-    num = lt.size(catalog["artist"])
     i = 0
     while i < 4:
         book = lt.getElement(artistas, i)

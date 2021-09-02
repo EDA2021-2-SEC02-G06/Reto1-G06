@@ -69,7 +69,7 @@ while True:
         loadData(catalog)
         print("Artistas cargados: " + str(lt.size(catalog["artist"])))
         print("Obras cargadas: " + str(lt.size(catalog["obras"])))
-        #print("Últimos tres Artistas: " + str(lt.size(catalog[""])))
+        print("Últimos tres Artistas: " + str(controller.getLastArtist(catalog)))
         #print("Últimas tres Obras: " + str(lt.size(catalog[""])))
     
     elif int(inputs[0]) == 2:

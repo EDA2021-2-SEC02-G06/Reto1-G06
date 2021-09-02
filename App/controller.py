@@ -68,6 +68,10 @@ def loadObras(catalog):
     input_file = csv.DictReader(open(booksfile, encoding='utf-8'))
     for book in input_file:
         model.addObras(catalog, book)
+
+def getLastArtist(catalog):
+    bestbooks = model.getLastArtist(catalog)
+    return bestbooks
 # Funciones de ordenamiento
 
 # Funciones de consulta sobre el catálogo
