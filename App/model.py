@@ -46,27 +46,42 @@ def newCatalog():
                'obras': None,
                }
 
-    catalog['artist'] = lt.newList('SINGLE_LINKED',
+    catalog['artist'] = lt.newList('ARRAY_LIST',
                                     cmpfunction=None)
     catalog['obras'] = lt.newList('SINGLE_LINKED',
                                     cmpfunction=None)
 
     return catalog
 
+def artistalista():
+
+    retorno = {'artist': None}
+    retorno['artist'] = lt.newList('SINGLE_LINKED', cmpfunction=None)
+    return retorno
+
+
 # Funciones para agregar informacion al catalogo
 def addArtist(catalog, artista):
     """
     Función encargada de añadir los artistas a la lista de artistas en el catalogo.
     """
-    # Se adiciona el libro a la lista de libros
+    
     lt.addLast(catalog['artist'], artista)
  
 def addObras(catalog, obras):
     """
     Función encargada de añadir las obras a la lista de obras en el catalogo.
     """
-    # Se adiciona el libro a la lista de libros
-    lt.addLast(catalog['obras'], obras)   
+    
+    lt.addLast(catalog['obras'], obras) 
+
+  
+
+
+
+# Funciones para creacion de datos
+
+# Funciones de consulta
 
 def getLastArtist(catalog):
     """
@@ -103,10 +118,8 @@ def getLastObras(catalog):
     
     return lastobras
 
-# Funciones para creacion de datos
-
-# Funciones de consulta
-
 # Funciones utilizadas para comparar elementos dentro de una lista
+
+
 
 # Funciones de ordenamiento

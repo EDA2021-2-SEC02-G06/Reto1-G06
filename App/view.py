@@ -20,6 +20,8 @@
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
+
+
 import config as cf
 import sys
 import controller
@@ -51,11 +53,18 @@ def initCatalog():
     """
     return controller.initCatalog()
 
+def initRetorno():
+    return controller.initArtistCrono()
+
 def loadData(catalog):
     """
     Llama a la función contenida en controller encargada de cargar los datos.
     """
     controller.loadData(catalog)
+
+def loadDataArtist(catalog,retorno,inicio,fin):
+
+    controller.loadDataArtist(catalog,retorno,inicio,fin)
 
 """
 Menu principal
@@ -73,7 +82,13 @@ while True:
         print("Últimas tres Obras: " + str(controller.getLastObras(catalog)))
     
     elif int(inputs[0]) == 2:
-        pass
+
+        añoinicio = int(input("Ingrese el año inicial:"))
+        añofin = int(input("Ingrese el año final:"))
+        artistlista = initRetorno()
+        loadDataArtist(catalog,artistlista,añoinicio,añofin)
+        print("Número total de artista en el rango "+str(añoinicio)+" - "+str(añofin)+": " + str(lt.size(artistlista["artist"])))
+        print("Primeros tres artistas en rango cronológico : ")
     
     elif int(inputs[0]) == 3:
         pass

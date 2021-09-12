@@ -36,7 +36,14 @@ def initCatalog():
     """
     catalog = model.newCatalog()
     return catalog
-    
+
+def initArtistCrono():
+    """
+    Llama la función que crea una lista vacía para el requerimiento 1.
+    """
+    retorno = model.artistalista()
+    return retorno
+
 # Funciones para la carga de datos
 def loadData(catalog):
     """
@@ -46,6 +53,8 @@ def loadData(catalog):
     loadArtist(catalog)
     loadObras(catalog)
 
+def loadDataArtist(catalog,retorno,inicio,fin):
+    loadCronoArtist(catalog,retorno,inicio,fin)
 
 def loadArtist(catalog):
     """
@@ -69,6 +78,26 @@ def loadObras(catalog):
     for obra in input_file:
         model.addObras(catalog, obra)
 
+def loadCronoArtist(catalog,retorno,inicio,fin):
+    
+    for artist in catalog["artist"]["elements"]:
+        año = int(artist["BeginDate"])
+        if (año>=inicio) and (año <= fin) and (año != None):
+            model.addArtist(retorno,artist)
+    
+    
+    print(inicio)
+    print(fin)
+        
+        
+        
+
+# Funciones de ordenamiento
+
+
+
+# Funciones de consulta sobre el catálogo
+
 def getLastArtist(catalog):
     """
     Llama a la función getLastArtist de model y retorna los valores de la misma
@@ -84,6 +113,6 @@ def getLastObras(catalog):
     """
     lasobras = model.getLastObras(catalog)
     return lasobras
-# Funciones de ordenamiento
 
-# Funciones de consulta sobre el catálogo
+
+
