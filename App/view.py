@@ -87,8 +87,30 @@ while True:
         añofin = int(input("Ingrese el año final:"))
         artistlista = initRetorno()
         loadDataArtist(catalog,artistlista,añoinicio,añofin)
+        primerosartistas = controller.getFirstArtist(artistlista)
+        ultimosartista = controller.getLastArtist(artistlista)
+
+
         print("Número total de artista en el rango "+str(añoinicio)+" - "+str(añofin)+": " + str(lt.size(artistlista["artist"])))
         print("Primeros tres artistas en rango cronológico : ")
+        
+        
+        print("|        NOMBRE        | AÑO DE NACIMIENTO | AÑO DE FALLECIMIENTO |  NACIONALIDAD  |  GÉNERO  | ")
+        for i in range(0,3):
+            name =primerosartistas["elements"][i]["DisplayName"]
+            begin = primerosartistas["elements"][i]["BeginDate"]
+            death = primerosartistas["elements"][i]["EndDate"]
+            nacio = primerosartistas["elements"][i]["Nationality"]
+            genero = primerosartistas["elements"][i]["Gender"]
+            print(" "+name+"        "+"     "+begin+"   "+"     "+death+"    "+"     "+nacio+"   "+"     "+genero)
+
+        for i in range(0,3):
+            name =ultimosartista["elements"][i]["DisplayName"]
+            begin = ultimosartista["elements"][i]["BeginDate"]
+            death = ultimosartista["elements"][i]["EndDate"]
+            nacio = ultimosartista["elements"][i]["Nationality"]
+            genero = ultimosartista["elements"][i]["Gender"]
+            print(" "+name+"        "+"     "+begin+"   "+"     "+death+"    "+"     "+nacio+"   "+"     "+genero)
     
     elif int(inputs[0]) == 3:
         pass

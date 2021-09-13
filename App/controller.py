@@ -97,6 +97,13 @@ def loadCronoArtist(catalog,retorno,inicio,fin):
 
 
 # Funciones de consulta sobre el catálogo
+def getFirstArtist(catalog):
+    """
+    Llama a la función getLastArtist de model y retorna los valores de la misma
+    en una variable.
+    """
+    firstartist = model.getFirstArtist(catalog)
+    return firstartist
 
 def getLastArtist(catalog):
     """

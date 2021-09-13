@@ -56,7 +56,7 @@ def newCatalog():
 def artistalista():
 
     retorno = {'artist': None}
-    retorno['artist'] = lt.newList('SINGLE_LINKED', cmpfunction=None)
+    retorno['artist'] = lt.newList('ARRAY_LIST', cmpfunction=None)
     return retorno
 
 
@@ -82,6 +82,22 @@ def addObras(catalog, obras):
 # Funciones para creacion de datos
 
 # Funciones de consulta
+def getFirstArtist(catalog):
+    """
+    Retorna la lista con los últimos tres artistas de la lista de 
+    artistas.
+    """
+    artistas = catalog['artist']
+    firstartist = lt.newList("ARRAY_LIST",cmpfunction=None)
+    num = lt.size(catalog["artist"])
+    i = 0
+    while i < 3:
+        ultimos = i
+        artista = lt.getElement(artistas, ultimos)
+        lt.addLast(firstartist,artista)
+        i += 1
+    
+    return firstartist 
 
 def getLastArtist(catalog):
     """
@@ -89,13 +105,13 @@ def getLastArtist(catalog):
     artistas.
     """
     artistas = catalog['artist']
-    lastartist = []
+    lastartist = lt.newList("ARRAY_LIST",cmpfunction=None)
     num = lt.size(catalog["artist"])
     i = 0
     while i < 3:
         ultimos = num - i
         book = lt.getElement(artistas, ultimos)
-        lastartist.append(book)
+        lt.addLast(lastartist,book)
         i += 1
     
     return lastartist 
