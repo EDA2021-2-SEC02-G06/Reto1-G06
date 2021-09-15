@@ -23,7 +23,7 @@
 import config as cf
 import model
 import csv
-
+from datetime import datetime as dt
 
 """
 El controlador se encarga de mediar entre la vista y el modelo.
@@ -44,7 +44,15 @@ def initArtistCrono():
     retorno = model.artistalista()
     return retorno
 
+def initObrasCrono():
+    """
+    Llama la función que crea una lista vacía para el requerimiento 1.
+    """
+    retorno = model.obralista()
+    return retorno
+
 # Funciones para la carga de datos
+
 def loadData(catalog):
     """
     Carga los datos de los archivos y cargar los datos en la
@@ -55,6 +63,9 @@ def loadData(catalog):
 
 def loadDataArtist(catalog,retorno,inicio,fin):
     loadCronoArtist(catalog,retorno,inicio,fin)
+
+def loadDataObras(catalog,retorno,inicio,fin):
+    loadCronoObras(catalog,retorno,inicio,fin)
 
 def loadArtist(catalog):
     """
@@ -84,6 +95,16 @@ def loadCronoArtist(catalog,retorno,inicio,fin):
         año = int(artist["BeginDate"])
         if (año>=inicio) and (año <= fin) and (año != None):
             model.addArtist(retorno,artist)
+
+
+def loadCronoObras(catalog,retorno,inicio,fin):
+    
+    for obra in catalog["obra"]["elements"]:
+        inicio_fecha = dt.strptime(inicio,"%Y/%m/%d")
+        fin_fecha = dt.strptime(fin,"%Y/%m/%d")
+        año_fecha = dt.strptime(obra["DateAcquired"],"%Y/%m/%d")
+        if (año_fecha>=inicio_fecha) and (año_fecha <= fin_fecha) and (año_fecha != None):
+            model.addObras(retorno,obra)
     
     
     print(inicio)

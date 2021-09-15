@@ -26,6 +26,7 @@
 
 
 import config as cf
+from datetime import datetime as dt
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
 assert cf
@@ -48,7 +49,7 @@ def newCatalog():
 
     catalog['artist'] = lt.newList('ARRAY_LIST',
                                     cmpfunction=None)
-    catalog['obras'] = lt.newList('SINGLE_LINKED',
+    catalog['obras'] = lt.newList('ARRAY_LIST',
                                     cmpfunction=None)
 
     return catalog
@@ -57,6 +58,12 @@ def artistalista():
 
     retorno = {'artist': None}
     retorno['artist'] = lt.newList('ARRAY_LIST', cmpfunction=None)
+    return retorno
+
+def obralista():
+
+    retorno = {'obra': None}
+    retorno['obra'] = lt.newList('ARRAY_LIST', cmpfunction=None)
     return retorno
 
 
@@ -136,6 +143,17 @@ def getLastObras(catalog):
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 
+def cmpArtworkByDateAcquired(artwork1, artwork2):
+    """
+    Devuelve verdadero (True) si el 'DateAcquired' de artwork1 es menores que el de artwork2
+    Args:
+    artwork1: informacion de la primera obra que incluye su valor 'DateAcquired'
+    artwork2: informacion de la segunda obra que incluye su valor 'DateAcquired'
+    """
+    fecha_uno = dt.strptime(artwork1["DateAcquired","%Y/%m/%d"])
+    fecha_dos = dt.strptime(artwork2["DateAcquired","%Y/%m/%d"])
+
+    return fecha_uno < fecha_dos
 
 
 # Funciones de ordenamiento

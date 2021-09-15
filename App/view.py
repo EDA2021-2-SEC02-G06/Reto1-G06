@@ -25,6 +25,7 @@
 import config as cf
 import sys
 import controller
+from datetime import datetime as dt
 from DISClib.ADT import list as lt
 assert cf
 
@@ -53,8 +54,12 @@ def initCatalog():
     """
     return controller.initCatalog()
 
-def initRetorno():
+def initArtistRetorno():
     return controller.initArtistCrono()
+
+def initObrasRetorno():
+
+    return controller.initObrasCrono()
 
 def loadData(catalog):
     """
@@ -65,6 +70,10 @@ def loadData(catalog):
 def loadDataArtist(catalog,retorno,inicio,fin):
 
     controller.loadDataArtist(catalog,retorno,inicio,fin)
+
+def loadDataObras(catalog,retorno,inicio,fin):
+
+    controller.loadDataObras(catalog,retorno,inicio,fin)
 
 """
 Menu principal
@@ -85,7 +94,7 @@ while True:
 
         añoinicio = int(input("Ingrese el año inicial:"))
         añofin = int(input("Ingrese el año final:"))
-        artistlista = initRetorno()
+        artistlista = initArtistRetorno()
         loadDataArtist(catalog,artistlista,añoinicio,añofin)
         primerosartistas = controller.getFirstArtist(artistlista)
         ultimosartista = controller.getLastArtist(artistlista)
@@ -113,7 +122,12 @@ while True:
             print(" "+name+"        "+"     "+begin+"   "+"     "+death+"    "+"     "+nacio+"   "+"     "+genero)
     
     elif int(inputs[0]) == 3:
-        pass
+        fecha_inicio = (input("Ingrese la fecha inicial (AAAA-MM-DD):"))
+        fecha_fin = (input("Ingrese el año final (AAAA-MM-DD):"))
+        obralista = initArtistRetorno()
+        loadDataArtist(catalog,obralista,fecha_inicio,fecha_fin)
+        print(obralista)
+
 
     elif int(inputs[0]) == 4:
         pass
