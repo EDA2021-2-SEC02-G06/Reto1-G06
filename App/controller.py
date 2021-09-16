@@ -83,7 +83,7 @@ def loadObras(catalog):
     """
     Carga las obras del archivo. Se carga el CSV en una variable, posteriormente 
     se lee el archivo y se cicla para añadir la obra a una lista con la llamada a
-    la función addObras.
+    la función addObras..
     """
     obrasfile = cf.data_dir + 'MOMA/Artworks-utf8-small.csv'
     input_file = csv.DictReader(open(obrasfile, encoding='utf-8'))

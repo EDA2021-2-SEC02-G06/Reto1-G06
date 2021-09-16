@@ -170,7 +170,7 @@ def getFirstObras_Dos(catalog):
 def getLastObras_Dos(catalog):
     """
     Retorna la lista con las últimas tres obras de la lista de 
-    artistas.
+    artistas..
     """
     
     artworks = catalog
