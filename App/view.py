@@ -27,8 +27,10 @@ import sys
 import controller
 from datetime import datetime as dt
 from DISClib.ADT import list as lt
-assert cf
 
+assert cf
+default_limit = 1000
+sys.setrecursionlimit(default_limit*30)
 
 """
 La vista se encarga de la interacción con el usuario
@@ -48,11 +50,51 @@ def printMenu():
     print("7- Proponer una nueva exposición en el museo")
     print("8- Salir")
 
-def initCatalog():
+def muestra():
+    numero = int(input("Ingrese el tamaño de la muestra :"))
+    return numero
+
+def algoritmo():
+    print("A continuación las opciones de algoritmos de ordenamiento que puede usar:")
+    print("1. Insertion Sort")
+    print("2. Merge Sort")
+    print("3. Quick Sort")
+    print("4. Shell Sort")
+    
+    algoritmo = int(input("Seleccione el tipo de algoritmo que desea usar:"))
+    if algoritmo == 1:
+        algoritmo = "InsertionSort"
+        return algoritmo
+    
+    if algoritmo == 2:
+        algoritmo = "MergeSort"
+        return algoritmo
+    
+    if algoritmo == 3:
+        algoritmo = "QuickSort"
+        return algoritmo
+    if algoritmo == 4:
+        algoritmo = "ShellSort"
+        return algoritmo
+
+def opcionesLista():
+    print("A continuación las opciones de lista que puede usar:")
+    print("1. Linked List")
+    print("2. Array List")
+    tipo = int(input("Seleccione el tipo de lista que desea usar:"))
+    if tipo == 1:
+        linked = "LINKED_LIST"
+        return linked
+    
+    if tipo == 2:
+        arreglo = "ARRAY_LIST"
+        return arreglo
+
+def initCatalog(tipo):
     """
     Llama a la función contenida en controller encargada de inicializar el catálogo de libros.
     """
-    return controller.initCatalog()
+    return controller.initCatalog(tipo)
 
 def initArtistRetorno():
     return controller.initArtistCrono()
@@ -82,13 +124,17 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
+        tipo = opcionesLista()
+        print(tipo)
         print("Cargando información de los archivos ....")
-        catalog = initCatalog()
+        catalog = initCatalog(tipo)
         loadData(catalog)
         print("Artistas cargados: " + str(lt.size(catalog["artist"])))
         print("Obras cargadas: " + str(lt.size(catalog["obras"])))
         print("Últimos tres Artistas: " + str(controller.getLastArtist(catalog)))
         print("Últimas tres Obras: " + str(controller.getLastObras(catalog)))
+        
+
     
     elif int(inputs[0]) == 2:
 
@@ -123,10 +169,52 @@ while True:
     
     elif int(inputs[0]) == 3:
         fecha_inicio = (input("Ingrese la fecha inicial (AAAA-MM-DD):"))
-        fecha_fin = (input("Ingrese el año final (AAAA-MM-DD):"))
-        obralista = initArtistRetorno()
-        loadDataArtist(catalog,obralista,fecha_inicio,fecha_fin)
-        print(obralista)
+        fecha_fin = (input("Ingrese la fecha final (AAAA-MM-DD):"))
+        
+        obralista = initObrasRetorno()
+        loadDataObras(catalog,obralista,fecha_inicio,fecha_fin)
+
+        numero_muestra = muestra()
+        tipo_algoritmo = algoritmo()
+
+        
+        ordenada = controller.aplicarAlgoritmoObras(obralista,tipo_algoritmo)
+        por_compra = controller.contarPorCompra(ordenada)
+
+        print("El MoMa adquirió "+ str(lt.size(ordenada)) + " obras entre la fecha "+ fecha_inicio + " y " + 
+        fecha_fin +" de las cuales compró "+ str(por_compra))
+        
+
+        primerasobras = controller.getFirstObras_Dos(ordenada)
+        ultimasobras = controller.getLastObras_Dos(ordenada)
+
+        print("|        TITULO       | ID ARTISTA | FECHA |  MEDIO  |  DIMENSIONES  | ")
+        for i in range(0,3):
+            title = primerasobras["elements"][i]["Title"]
+            constituent = primerasobras["elements"][i]["ConstituentID"]
+            fecha = primerasobras["elements"][i]["Date"]
+            medio = primerasobras["elements"][i]["Medium"]
+            dimensiones = primerasobras["elements"][i]["Dimensions"]
+            print(" "+title+"        "+"     "+constituent+"   "+"     "+fecha+"    "+"     "+medio+"   "+"     "+dimensiones)
+            print("______________________________________________________")
+
+        
+        print("_ _ _ _ __ _ _ _ __ _ _ _ __ _ _ _ __ _ _ _ _")
+
+        for i in range(0,3):
+            title = ultimasobras[i]["Title"]
+            constituent = ultimasobras[i]["ConstituentID"]
+            fecha = ultimasobras[i]["Date"]
+            medio = ultimasobras[i]["Medium"]
+            dimensiones = ultimasobras[i]["Dimensions"]
+            print(" "+title+"        "+"     "+constituent+"   "+"     "+fecha+"    "+"     "+medio+"   "+"     "+dimensiones)
+            print("______________________________________________________")
+
+       
+
+    
+        
+    
 
 
     elif int(inputs[0]) == 4:

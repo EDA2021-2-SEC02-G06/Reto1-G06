@@ -24,17 +24,18 @@ import config as cf
 import model
 import csv
 from datetime import datetime as dt
+from DISClib.ADT import list as lt
 
 """
 El controlador se encarga de mediar entre la vista y el modelo.
 """
 # Inicialización del Catálogo de libros
 
-def initCatalog():
+def initCatalog(tipo):
     """
     Llama la funcion de inicializacion del catalogo.
     """
-    catalog = model.newCatalog()
+    catalog = model.newCatalog(tipo)
     return catalog
 
 def initArtistCrono():
@@ -91,30 +92,41 @@ def loadObras(catalog):
 
 def loadCronoArtist(catalog,retorno,inicio,fin):
     
-    for artist in catalog["artist"]["elements"]:
+    
+    
+    for artist in lt.iterator(catalog["artist"]):
         año = int(artist["BeginDate"])
         if (año>=inicio) and (año <= fin) and (año != None):
             model.addArtist(retorno,artist)
 
 
 def loadCronoObras(catalog,retorno,inicio,fin):
+
     
-    for obra in catalog["obra"]["elements"]:
-        inicio_fecha = dt.strptime(inicio,"%Y/%m/%d")
-        fin_fecha = dt.strptime(fin,"%Y/%m/%d")
-        año_fecha = dt.strptime(obra["DateAcquired"],"%Y/%m/%d")
+    for obra in lt.iterator(catalog["obras"]):
+        inicio_fecha = dt.strptime(inicio,"%Y-%m-%d")
+        fin_fecha = dt.strptime(fin,"%Y-%m-%d")
+        año_fecha = dt.strptime(obra["DateAcquired"],"%Y-%m-%d")
         if (año_fecha>=inicio_fecha) and (año_fecha <= fin_fecha) and (año_fecha != None):
             model.addObras(retorno,obra)
-    
-    
-    print(inicio)
-    print(fin)
-        
         
         
 
 # Funciones de ordenamiento
 
+def aplicarAlgoritmoObras(lista,tipo):
+    cmp = model.cmpArtworkByDateAcquired
+    if tipo == "MergeSort":
+        return model.MergeSort(lista["obras"],cmp)
+
+    if tipo == "InsertionSort":
+        return model.InsertionSort(lista["obras"],cmp)
+
+    if tipo == "ShellSort":
+        return model.ShellSort(lista["obras"],cmp)
+
+    if tipo == "QuickSort":
+        return model.QuickSort(lista["obras"],cmp)
 
 
 # Funciones de consulta sobre el catálogo
@@ -142,5 +154,27 @@ def getLastObras(catalog):
     lasobras = model.getLastObras(catalog)
     return lasobras
 
+def getFirstObras_Dos(catalog):
+    """
+    Llama a la función getLastArtist de model y retorna los valores de la misma
+    en una variable.
+    """
+    firstartist = model.getFirstObras_Dos(catalog)
+    return firstartist
 
 
+def getLastObras_Dos(catalog):
+    """
+    Llama a la función getLastObras de model y retorna los valores de la misma
+    en una variable.
+    """
+    lasobras = model.getLastObras_Dos(catalog)
+    return lasobras
+
+#Funciones para contar
+def contarPorCompra(lista):
+    a = 0
+    for obra in lt.iterator(lista):
+        if obra["CreditLine"] == "Purchase":
+            a += 1
+    return a

@@ -28,7 +28,11 @@
 import config as cf
 from datetime import datetime as dt
 from DISClib.ADT import list as lt
-from DISClib.Algorithms.Sorting import shellsort as sa
+from DISClib.Algorithms.Sorting import insertionsort as si
+from DISClib.Algorithms.Sorting import mergesort as ms
+from DISClib.Algorithms.Sorting import quicksort as qs
+from DISClib.Algorithms.Sorting import selectionsort as ss
+from DISClib.Algorithms.Sorting import shellsort as sh
 assert cf
 
 """
@@ -37,7 +41,7 @@ los mismos.
 """
 
 # Construccion de modelos
-def newCatalog():
+def newCatalog(tipo):
     """
     Inicializa el catálogo que contiene listas y obras. Crea una lista vacia para guardar
     todos los artistas, adicionalmente, crea una lista vacia para las obras. 
@@ -47,9 +51,9 @@ def newCatalog():
                'obras': None,
                }
 
-    catalog['artist'] = lt.newList('ARRAY_LIST',
+    catalog['artist'] = lt.newList(tipo,
                                     cmpfunction=None)
-    catalog['obras'] = lt.newList('ARRAY_LIST',
+    catalog['obras'] = lt.newList(tipo,
                                     cmpfunction=None)
 
     return catalog
@@ -62,8 +66,8 @@ def artistalista():
 
 def obralista():
 
-    retorno = {'obra': None}
-    retorno['obra'] = lt.newList('ARRAY_LIST', cmpfunction=None)
+    retorno = {'obras': None}
+    retorno['obras'] = lt.newList('ARRAY_LIST', cmpfunction=None)
     return retorno
 
 
@@ -79,7 +83,10 @@ def addObras(catalog, obras):
     """
     Función encargada de añadir las obras a la lista de obras en el catalogo.
     """
-    
+    if obras["DateAcquired"] == "" or obras["DateAcquired"] == "Unknown":
+        hoy = dt.today()
+        obras["DateAcquired"] = hoy.strftime("%Y-%m-%d")
+
     lt.addLast(catalog['obras'], obras) 
 
   
@@ -123,6 +130,8 @@ def getLastArtist(catalog):
     
     return lastartist 
 
+ 
+
 def getLastObras(catalog):
     """
     Retorna la lista con las últimas tres obras de la lista de 
@@ -141,6 +150,41 @@ def getLastObras(catalog):
     
     return lastobras
 
+def getFirstObras_Dos(catalog):
+    """
+    Retorna la lista con los últimos tres artistas de la lista de 
+    artistas.
+    """
+    artistas = catalog
+    firstartist = lt.newList("ARRAY_LIST",cmpfunction=None)
+    num = lt.size(catalog)
+    i = 0
+    while i < 3:
+        ultimos = i
+        artista = lt.getElement(artistas, ultimos)
+        lt.addLast(firstartist,artista)
+        i += 1
+    
+    return firstartist
+
+def getLastObras_Dos(catalog):
+    """
+    Retorna la lista con las últimas tres obras de la lista de 
+    artistas.
+    """
+    
+    artworks = catalog
+    lastobras = []
+    num = lt.size(catalog)
+    i = 0
+    while i < 3:
+        ultimos = num - i
+        book = lt.getElement(artworks, ultimos)
+        lastobras.append(book)
+        i += 1
+    
+    return lastobras
+
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 def cmpArtworkByDateAcquired(artwork1, artwork2):
@@ -150,10 +194,19 @@ def cmpArtworkByDateAcquired(artwork1, artwork2):
     artwork1: informacion de la primera obra que incluye su valor 'DateAcquired'
     artwork2: informacion de la segunda obra que incluye su valor 'DateAcquired'
     """
-    fecha_uno = dt.strptime(artwork1["DateAcquired","%Y/%m/%d"])
-    fecha_dos = dt.strptime(artwork2["DateAcquired","%Y/%m/%d"])
-
-    return fecha_uno < fecha_dos
+    return dt.fromisoformat(artwork1["DateAcquired"]) < dt.fromisoformat(artwork2["DateAcquired"])
 
 
 # Funciones de ordenamiento
+
+def MergeSort(lista,cmpfunction):
+    return ms.sort(lista,cmpfunction)
+
+def InsertionSort(lista,cmpfunction):
+    return si.sort(lista,cmpfunction)
+
+def ShellSort(lista,cmpfunction):
+    return sh.sort(lista,cmpfunction)
+
+def QuickSort(lista,cmpfunction):
+    return qs.sort(lista,cmpfunction)
