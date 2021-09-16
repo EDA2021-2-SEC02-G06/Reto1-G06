@@ -94,6 +94,10 @@ def addObras(catalog, obras):
 
 
 # Funciones para creacion de datos
+def sublista(lista,tamaño):
+    lista_dos = lista["obras"]
+
+    return lt.subList(lista_dos,1,tamaño)
 
 # Funciones de consulta
 def getFirstArtist(catalog):

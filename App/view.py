@@ -22,6 +22,7 @@
 
 
 
+
 import config as cf
 import sys
 import controller
@@ -175,6 +176,8 @@ while True:
         loadDataObras(catalog,obralista,fecha_inicio,fecha_fin)
 
         numero_muestra = muestra()
+        sublista = controller.sublista(obralista,numero_muestra)
+        print(lt.size(sublista))
         tipo_algoritmo = algoritmo()
 
         

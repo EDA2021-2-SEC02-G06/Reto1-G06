@@ -110,7 +110,9 @@ def loadCronoObras(catalog,retorno,inicio,fin):
         if (año_fecha>=inicio_fecha) and (año_fecha <= fin_fecha) and (año_fecha != None):
             model.addObras(retorno,obra)
         
-        
+def sublista(lista,tamaño):
+
+    return model.sublista(lista,tamaño)
 
 # Funciones de ordenamiento
 
