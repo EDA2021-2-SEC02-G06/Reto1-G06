@@ -26,6 +26,7 @@
 
 
 import config as cf
+import time
 from datetime import datetime as dt
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import insertionsort as si
@@ -204,13 +205,33 @@ def cmpArtworkByDateAcquired(artwork1, artwork2):
 # Funciones de ordenamiento
 
 def MergeSort(lista,cmpfunction):
-    return ms.sort(lista,cmpfunction)
+    start_time = time.process_time()
+    sorted_list = ms.sort(lista,cmpfunction)
+    stop_time = time.process_time()
+    elapsed_time_mseg = (stop_time - start_time)*1000
+    return elapsed_time_mseg,sorted_list
+    
+    
 
 def InsertionSort(lista,cmpfunction):
-    return si.sort(lista,cmpfunction)
+    start_time = time.process_time()
+    sorted_list = si.sort(lista,cmpfunction)
+    stop_time = time.process_time()
+    elapsed_time_mseg = (stop_time - start_time)*1000
+
+    return elapsed_time_mseg,sorted_list
 
 def ShellSort(lista,cmpfunction):
-    return sh.sort(lista,cmpfunction)
+    start_time = time.process_time()
+    sorted_list = sh.sort(lista,cmpfunction)
+    stop_time = time.process_time()
+    elapsed_time_mseg = (stop_time - start_time)*1000
+    return elapsed_time_mseg,sorted_list
 
 def QuickSort(lista,cmpfunction):
-    return qs.sort(lista,cmpfunction)
+    start_time = time.process_time()
+    sorted_list = qs.sort(lista,cmpfunction)
+    stop_time = time.process_time()
+    elapsed_time_mseg = (stop_time - start_time)*1000
+
+    return elapsed_time_mseg,sorted_list

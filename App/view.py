@@ -177,19 +177,18 @@ while True:
 
         numero_muestra = muestra()
         sublista = controller.sublista(obralista,numero_muestra)
-        print(lt.size(sublista))
         tipo_algoritmo = algoritmo()
 
         
         ordenada = controller.aplicarAlgoritmoObras(obralista,tipo_algoritmo)
-        por_compra = controller.contarPorCompra(ordenada)
+        por_compra = controller.contarPorCompra(ordenada[1])
 
-        print("El MoMa adquirió "+ str(lt.size(ordenada)) + " obras entre la fecha "+ fecha_inicio + " y " + 
+        print("El MoMa adquirió "+ str(lt.size(ordenada[1])) + " obras entre la fecha "+ fecha_inicio + " y " + 
         fecha_fin +" de las cuales compró "+ str(por_compra))
         
 
-        primerasobras = controller.getFirstObras_Dos(ordenada)
-        ultimasobras = controller.getLastObras_Dos(ordenada)
+        primerasobras = controller.getFirstObras_Dos(ordenada[1])
+        ultimasobras = controller.getLastObras_Dos(ordenada[1])
 
         print("|        TITULO       | ID ARTISTA | FECHA |  MEDIO  |  DIMENSIONES  | ")
         for i in range(0,3):
@@ -212,6 +211,11 @@ while True:
             dimensiones = ultimasobras[i]["Dimensions"]
             print(" "+title+"        "+"     "+constituent+"   "+"     "+fecha+"    "+"     "+medio+"   "+"     "+dimensiones)
             print("______________________________________________________")
+
+        
+        print("Tiempo de ejecución : " + str(ordenada[0]))
+
+       
 
        
 
