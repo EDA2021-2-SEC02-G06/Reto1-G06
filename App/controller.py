@@ -130,6 +130,20 @@ def aplicarAlgoritmoObras(lista,tipo):
     if tipo == "QuickSort":
         return model.QuickSort(lista["obras"],cmp)
 
+def aplicarAlgoritmoArtistas(lista,tipo):
+    cmp = model.cmpArtworkByDateAcquired
+    if tipo == "MergeSort":
+        return model.MergeSort(lista["obras"],cmp)
+
+    if tipo == "InsertionSort":
+        return model.InsertionSort(lista["obras"],cmp)
+
+    if tipo == "ShellSort":
+        return model.ShellSort(lista["obras"],cmp)
+
+    if tipo == "QuickSort":
+        return model.QuickSort(lista["obras"],cmp)
+
 
 # Funciones de consulta sobre el catálogo
 def getFirstArtist(catalog):
@@ -177,6 +191,6 @@ def getLastObras_Dos(catalog):
 def contarPorCompra(lista):
     a = 0
     for obra in lt.iterator(lista):
-        if obra["CreditLine"] == "Purchase":
+        if "purchase" in obra["CreditLine"] or "Purchase" in obra["CreditLine"]  :
             a += 1
     return a

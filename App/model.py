@@ -191,6 +191,10 @@ def getLastObras_Dos(catalog):
     return lastobras
 
 # Funciones utilizadas para comparar elementos dentro de una lista
+def cmpArtistByDate(artist1, artist2):
+
+    return artist1["BeginDate"] < artist2["BeginDate"]
+
 
 def cmpArtworkByDateAcquired(artwork1, artwork2):
     """
@@ -201,6 +205,14 @@ def cmpArtworkByDateAcquired(artwork1, artwork2):
     """
     return dt.fromisoformat(artwork1["DateAcquired"]) < dt.fromisoformat(artwork2["DateAcquired"])
 
+def cmpArtworkByDate(artwork1, artwork2):
+    """
+    Devuelve verdadero (True) si el 'Date' de artwork1 es menores que el de artwork2
+    Args:
+    artwork1: informacion de la primera obra que incluye su valor 'DateAcquired'
+    artwork2: informacion de la segunda obra que incluye su valor 'DateAcquired'
+    """
+    return dt.fromisoformat(artwork1["Date"]) < dt.fromisoformat(artwork2["Date"])
 
 # Funciones de ordenamiento
 

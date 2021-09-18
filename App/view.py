@@ -176,7 +176,7 @@ while True:
         loadDataObras(catalog,obralista,fecha_inicio,fecha_fin)
 
         numero_muestra = muestra()
-        sublista = controller.sublista(obralista,numero_muestra)
+        
         tipo_algoritmo = algoritmo()
 
         
