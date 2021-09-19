@@ -187,32 +187,48 @@ while True:
         fecha_fin +" de las cuales compró "+ str(por_compra))
         
 
-        primerasobras = controller.getFirstObras_Dos(ordenada[1])
-        ultimasobras = controller.getLastObras_Dos(ordenada[1])
+        ultimasobras= controller.getFirstObras_Dos(ordenada[1])
+        primerasobras = controller.getLastObras_Dos(ordenada[1])
+
+        print(ultimasobras)
+        print(primerasobras)
+
 
         print("|        TITULO       | ID ARTISTA | FECHA |  MEDIO  |  DIMENSIONES  | ")
-        for i in range(0,3):
-            title = primerasobras["elements"][i]["Title"]
-            constituent = primerasobras["elements"][i]["ConstituentID"]
-            fecha = primerasobras["elements"][i]["Date"]
-            medio = primerasobras["elements"][i]["Medium"]
-            dimensiones = primerasobras["elements"][i]["Dimensions"]
-            print(" "+title+"        "+"     "+constituent+"   "+"     "+fecha+"    "+"     "+medio+"   "+"     "+dimensiones)
-            print("______________________________________________________")
+        i = 2
+        while i != -1:
+
+            if "," not in ((primerasobras[i]["ConstituentID"])):
+
+                title = primerasobras[i]["Title"]
+                artista = controller.EncontrarArtista(catalog,int(((primerasobras[i]["ConstituentID"]).replace("[","").replace("]","")))) 
+                fecha = primerasobras[i]["Date"]
+                medio = primerasobras[i]["Medium"]
+                dimensiones = primerasobras[i]["Dimensions"]
+                i -= 1
+                print(" "+title+"        "+"     "+artista+"   "+"     "+fecha+"    "+"     "+medio+"   "+"     "+dimensiones)
+                print("______________________________________________________")
 
         
         print("_ _ _ _ __ _ _ _ __ _ _ _ __ _ _ _ __ _ _ _ _-")
 
-        for i in range(0,3):
-            title = ultimasobras[i]["Title"]
-            constituent = ultimasobras[i]["ConstituentID"]
-            fecha = ultimasobras[i]["Date"]
-            medio = ultimasobras[i]["Medium"]
-            dimensiones = ultimasobras[i]["Dimensions"]
-            print(" "+title+"        "+"     "+constituent+"   "+"     "+fecha+"    "+"     "+medio+"   "+"     "+dimensiones)
-            print("______________________________________________________")
+        for j in range(0,3):
+            
+            title = ultimasobras[j]["Title"]
+            
+            fecha = ultimasobras[j]["Date"]
+            medio = ultimasobras[j]["Medium"]
+            dimensiones = ultimasobras[j]["Dimensions"]
+            if "," not in ultimasobras[j]["ConstituentID"]:
+                constituent = controller.EncontrarArtista(catalog,int(((ultimasobras[j]["ConstituentID"]).replace("[","").replace("]",""))))
+                print(" "+title+"        "+"     "+constituent+"   "+"     "+fecha+"    "+"     "+medio+"   "+"     "+dimensiones)
+                print("______________________________________________________")
+            else:
+                constituent = ultimasobras[j]["ConstituentID"]
+                print(" "+title+"        "+"     "+constituent+"   "+"     "+fecha+"    "+"     "+medio+"   "+"     "+dimensiones)
+                print("______________________________________________________")
 
-        
+
         print("Tiempo de ejecución : " + str(ordenada[0]))
 
        

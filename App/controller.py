@@ -114,6 +114,9 @@ def sublista(lista,tamaño):
 
     return model.sublista(lista,tamaño)
 
+def EncontrarArtista(catalogo,codigo):
+
+    return model.EncontrarArtista(catalogo,codigo)
 # Funciones de ordenamiento
 
 def aplicarAlgoritmoObras(lista,tipo):

@@ -161,14 +161,14 @@ def getFirstObras_Dos(catalog):
     artistas.
     """
     artistas = catalog
-    firstartist = lt.newList("ARRAY_LIST",cmpfunction=None)
-    num = lt.size(catalog)
-    i = 0
-    while i < 3:
+    firstartist = []
+    
+    i = 3
+    while i != 0:
         ultimos = i
         artista = lt.getElement(artistas, ultimos)
-        lt.addLast(firstartist,artista)
-        i += 1
+        firstartist.append(artista)
+        i -= 1
     
     return firstartist
 
@@ -181,14 +181,22 @@ def getLastObras_Dos(catalog):
     artworks = catalog
     lastobras = []
     num = lt.size(catalog)
-    i = 0
-    while i < 3:
+    i = 2
+    while i != -1:
         ultimos = num - i
         book = lt.getElement(artworks, ultimos)
         lastobras.append(book)
-        i += 1
+        i -= 1
     
     return lastobras
+
+def EncontrarArtista(catalogo,codigo):
+
+    for artist in lt.iterator(catalogo["artist"]):
+
+        if int(artist["ConstituentID"]) == codigo:
+            
+            return artist["DisplayName"]
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 def cmpArtistByDate(artist1, artist2):
@@ -203,7 +211,7 @@ def cmpArtworkByDateAcquired(artwork1, artwork2):
     artwork1: informacion de la primera obra que incluye su valor 'DateAcquired'
     artwork2: informacion de la segunda obra que incluye su valor 'DateAcquired'
     """
-    return dt.fromisoformat(artwork1["DateAcquired"]) < dt.fromisoformat(artwork2["DateAcquired"])
+    return dt.fromisoformat(artwork1["DateAcquired"]) > dt.fromisoformat(artwork2["DateAcquired"])
 
 def cmpArtworkByDate(artwork1, artwork2):
     """
