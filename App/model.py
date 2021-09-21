@@ -34,6 +34,7 @@ from DISClib.Algorithms.Sorting import mergesort as ms
 from DISClib.Algorithms.Sorting import quicksort as qs
 from DISClib.Algorithms.Sorting import selectionsort as ss
 from DISClib.Algorithms.Sorting import shellsort as sh
+from operator import itemgetter
 assert cf
 
 """
@@ -193,7 +194,7 @@ def getLastObras_Dos(catalog):
 def EncontrarArtista(catalogo,codigo):
 
     for artist in lt.iterator(catalogo["artist"]):
-
+        
         if int(artist["ConstituentID"]) == codigo:
             
             return artist["DisplayName"]
@@ -255,3 +256,81 @@ def QuickSort(lista,cmpfunction):
     elapsed_time_mseg = (stop_time - start_time)*1000
 
     return elapsed_time_mseg,sorted_list
+
+def EncontrarArtista2(nom, catalogo):
+
+    for artist in lt.iterator(catalogo["artist"]):
+        if nom in artist["DisplayName"]:
+            return artist["ConstituentID"]
+
+def ObrasPorArtista(Id_A, catalogo):
+    lcod = []
+    for obra in lt.iterator(catalogo["obras"]):
+        if "," in obra["ConstituentID"]:
+            var = obra["ConstituentID"]
+            var = var.split()
+            for e in var:
+                lcod.append(e)
+        else:
+            lcod.append(obra["ConstituentID"].replace("[","").replace("]",""))
+
+
+    i = 0
+    for obras in lcod:
+        if Id_A == obras:
+            i += 1
+    return i 
+
+def ListaDictReq4(catalogo, Id_A):
+    Ldr4 = []
+    #Ldr4.append({"metodo": "Zr", "numero": 0})
+    for obra in lt.iterator(catalogo["obras"]):
+        dicit = {"metodo": obra["Medium"], "numero": 1, "obras": [obra["ObjectID"]]}
+        if "," in obra["ConstituentID"]:
+            var = obra["ConstituentID"]
+            var = var.split()
+            for e in var:
+                if Id_A == e:
+                    f = True
+                    for a in Ldr4:
+                        if a["metodo"] == obra["Medium"]:
+                            a["numero"] += 1
+                            a["obras"].append(obra["ObjectID"])
+                            f = False
+                    if f == True:
+                        Ldr4.append(dicit)
+        
+        else:
+            if Id_A == obra["ConstituentID"].replace("[","").replace("]",""):
+                    f = True
+                    for r in Ldr4:
+
+                        if r["metodo"] == obra["Medium"]:
+                            r["numero"] += 1
+                            r["obras"].append(obra["ObjectID"])
+                            f = False
+                    if f == True:
+                        Ldr4.append(dicit)
+                        
+    
+
+    Ldr4 = sorted(Ldr4, key=itemgetter('numero'), reverse=True)
+    return Ldr4
+
+def RecapTecnicaObras(catalog, dictReq4):  
+    LGrande = []
+    miniL = []
+    for a in dictReq4[0]["obras"]:
+        miniL.append(a)
+
+        
+
+    for obra in lt.iterator(catalog["obras"]):
+        for ob in miniL:
+
+            if obra["ObjectID"] == ob:
+                dicto = {"titulo": obra["Title"], "id": obra["ObjectID"], "fecha": obra["Date"], "tecnica": obra["Medium"], "dimensiones": obra["Dimensions"]}
+                LGrande.append(dicto)
+        
+    return LGrande 
+    

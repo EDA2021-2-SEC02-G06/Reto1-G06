@@ -239,9 +239,23 @@ while True:
         
     
 
-
     elif int(inputs[0]) == 4:
-        pass
+    
+        nom = input("¿Cuál es el nombre del artista?: ")
+        Id_A = controller.EncontrarArtista2(nom, catalog)
+        ObrasNom = controller.ObrasPorArtista(Id_A, catalog)
+        print(nom + " con el ID en el MoMa número " + str(Id_A) + " tiene " + str(ObrasNom) + " a su nombre en el museo.")
+        dictReq4 = controller.ListaDictReq4(catalog, Id_A)
+        cantidad = len(dictReq4)
+        print("Existen " + str(cantidad) + " distintas técnicas en su trabajo artistico")
+        print("Su técnica más utilizda es: " + dictReq4[0]["metodo"] + " con " + str(dictReq4[0]["numero"]) + " piezas")
+        print("Unos datos de las " + str(dictReq4[0]["numero"]) + " obras realizadas con " + dictReq4[0]["metodo"] + "se ve a continuación:")
+        RecapTecnicaObras = controller.RecapTecnicaObras(catalog, dictReq4)
+        print("|          TITULO         |   ID OBJETO   |      FECHA      |       MEDIO       |       DIMENSIONES       | ")
+        for element in RecapTecnicaObras:
+            print(element["titulo"] + " | " + element["id"] + " | " + element["fecha"] + " | " + element["tecnica"]+ " | " + element["dimensiones"])
+            print("---------------------------------------------------------------------------------------------------------------------------------------------------")
+
 
     elif int(inputs[0]) == 5:
         pass

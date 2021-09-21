@@ -197,3 +197,20 @@ def contarPorCompra(lista):
         if "purchase" in obra["CreditLine"] or "Purchase" in obra["CreditLine"]  :
             a += 1
     return a
+
+def EncontrarArtista2(nom, catalogo):
+
+    return model.EncontrarArtista2(nom, catalogo)
+
+def ObrasPorArtista(Id_A, catalogo):
+
+    return model.ObrasPorArtista(Id_A, catalogo)
+
+def ListaDictReq4(catalogo, Id_A):
+
+    return model.ListaDictReq4(catalogo, Id_A)
+
+def RecapTecnicaObras(catalog, dictReq4):
+
+    return model.RecapTecnicaObras(catalog, dictReq4)
+    
