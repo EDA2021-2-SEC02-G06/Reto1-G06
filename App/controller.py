@@ -117,6 +117,16 @@ def sublista(lista,tamaño):
 def EncontrarArtista(catalogo,codigo):
 
     return model.EncontrarArtista(catalogo,codigo)
+
+def contarNacionalidades(catalog):
+
+    return model.ContarPaises(catalog)
+
+    
+
+def ListaNacionalidades(catalog):
+
+    return model.ListaNacionalidades(catalog)
 # Funciones de ordenamiento
 
 def aplicarAlgoritmoObras(lista,tipo):

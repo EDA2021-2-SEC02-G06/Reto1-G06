@@ -92,7 +92,46 @@ def addObras(catalog, obras):
     lt.addLast(catalog['obras'], obras) 
 
   
+def ListaNacionalidades(catalog):
 
+    nacionalidades = lt.newList("ARRAY_LIST",cmpfunction=None,)
+
+    for artist in lt.iterator(catalog):
+        nacionalidad = int(artist["BeginDate"])
+        if (año>=inicio) and (año <= fin) and (año != None):
+            model.addArtist(retorno,artist)
+
+def ContarPaises(catalog):
+
+
+    interno = lt.newList("ARRAY_LIST",cmpfunction=None)
+    lt.addLast(interno,"Unknown")
+
+    for artist in lt.iterator(catalog["artist"]):
+        if not(lt.isPresent(interno,artist["Nationality"])):
+
+            lt.addLast(interno,artist["Nationality"])
+            
+
+            
+            
+    return interno
+
+
+
+
+    for artist in lt.iterator(catalog["artist"]):
+        if artist["Nationality"] in interno:
+            interno[artist["Nationality"]] +=1
+        elif artist["Nationality"] == ""  :
+            interno["Unknow"] += 1
+            
+    return interno
+   
+
+         
+
+    
 
 
 # Funciones para creacion de datos
@@ -198,6 +237,14 @@ def EncontrarArtista(catalogo,codigo):
         if int(artist["ConstituentID"]) == codigo:
             
             return artist["DisplayName"]
+def EncontrarArtistaByNacionality(catalogo, codigo):
+
+    for artist in lt.iterator(catalogo["artist"]):
+        
+        if int(artist["ConstituentID"]) == codigo:
+            
+            return artist["Nacionality"]
+
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 def cmpArtistByDate(artist1, artist2):
