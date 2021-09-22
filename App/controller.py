@@ -213,4 +213,108 @@ def ListaDictReq4(catalogo, Id_A):
 def RecapTecnicaObras(catalog, dictReq4):
 
     return model.RecapTecnicaObras(catalog, dictReq4)
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def ListaDepto(depto, catalog):
+
+     return model.ListaDepto(depto, catalog)
+
+def TamañosObras(ListaDepto):
+
+    return model.TamañosObras(ListaDepto)
+
+def PreciosObras(TamañosObras):
+
+    return model.PreciosObras(TamañosObras)
+
+def OrdenPrecio(PreciosObras):
+
+    return model.OrdenPrecio(PreciosObras)
+
+
+def OrdenAntiguedad(PreciosObras):
+
+    return model.OrdenAntiguedad(PreciosObras)
+

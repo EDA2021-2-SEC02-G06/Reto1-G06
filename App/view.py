@@ -260,8 +260,112 @@ while True:
     elif int(inputs[0]) == 5:
         pass
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     elif int(inputs[0]) == 6:
-        pass
+        depto = input("¿Cuál es el departamento que desea trasladar?: ")
+        ListaDepto = controller.ListaDepto(depto, catalog)
+        TamañosObras = controller.TamañosObras(ListaDepto)
+        PreciosObras = controller.PreciosObras(TamañosObras)
+        OrdenPrecio = controller.OrdenPrecio(PreciosObras)
+        OrdenAntiguedad = controller.OrdenAntiguedad(PreciosObras)
+        print("|          TITULO         |   ARTISTA   |      CLASIFICACION      |       FECHA       |       MEDIO       |     DIMENSIONES    |    COSTO    |")
+        
+
+        
+
+        #print (OrdenPrecio)
+        #print("---------------------------------------------------------------------------------------")
+        #print(OrdenAntiguedad)
+        print("plox")
+        
+            
 
     elif int(inputs[0]) == 7:
         pass
