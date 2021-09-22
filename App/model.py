@@ -568,3 +568,5 @@ def CmpCosto(obra1, obra2):
 def CmpAntiguedad(obra1, obra2):
 
     return obra1["fecha"]<obra2["fecha"]
+
+x = 1
