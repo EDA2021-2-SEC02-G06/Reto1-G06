@@ -36,6 +36,9 @@ from DISClib.Algorithms.Sorting import selectionsort as ss
 from DISClib.Algorithms.Sorting import shellsort as sh
 from operator import itemgetter
 assert cf
+import re as re
+
+
 
 """
 Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
@@ -381,3 +384,234 @@ def RecapTecnicaObras(catalog, dictReq4):
         
     return LGrande 
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def ListaDepto(depto, catalog):
+
+    ListaD = lt.newList("ARRAY_LIST", cmpfunction=None) 
+
+    for obra in lt.iterator(catalog["obras"]):
+       dicti = {"titulo": obra["Title"], "artistaid": obra["ConstituentID"], "clasificacion": obra["Classification"], "fecha": obra["Date"], "medio": obra["Medium"], "dimensiones": obra["Dimensions"], "peso": obra["Weight (kg)"], "costo": 0, "diametro": obra["Diameter (cm)"], "altura": obra["Height (cm)"], "largo": obra["Length (cm)"], "ancho": obra["Width (cm)"]}
+       if obra["Department"] == depto:
+           lt.addFirst(ListaD, dicti)
+    
+
+    return ListaD
+
+def TamañosObras(ListaDepto):
+
+    for obra in lt.iterator(ListaDepto):
+        
+        if obra["diametro"] != "":
+            vard = float(obra["diametro"])
+            vard1 = (vard/2)/100
+            obra["diametro"] = vard1
+        
+        if obra["altura"] != "":
+            vara = float(obra["altura"])
+            vara1 = vara/100
+            obra["altura"] = vara1
+            
+
+        if obra["ancho"] != "":
+            varc = float(obra["ancho"])
+            varc1 = varc/100
+            obra["ancho"] = varc1
+        
+        if obra["largo"] != "":
+            varl = float(obra["largo"])
+            varl1 = varl/100
+            obra["largo"] = varl1
+    
+    return ListaDepto
+
+def PreciosObras(TamañosObras):
+
+    for obra in lt.iterator(TamañosObras):
+
+        valor = 0
+        valor1 = 0
+        if obra["largo"] and obra["ancho"] and obra["altura"] != "":
+            tam3 = obra["largo"] * obra["ancho"] * obra["altura"]
+            precio3 = 72.00*tam3
+            valor = precio3
+        
+        elif obra["largo"] and obra["ancho"] != "":
+            tam2 = obra["largo"] * obra["ancho"]
+            precio2 = 72.00*tam2
+            valor = precio2
+        
+        elif obra["ancho"] and obra["altura"] != "":
+            tam2 = obra["altura"] * obra["ancho"]
+            precio2 = 72.00*tam2
+            valor = precio2
+
+        elif obra["largo"] and obra["altura"] != "":
+            tam2 = obra["largo"] * obra["altura"]
+            precio2 = 72.00*tam2
+            valor = precio2
+        
+        elif obra["altura"] and obra["diametro"] != "":
+            tam3r = 3.14 * obra["diametro"]^2 * obra["altura"]
+            precio3r = 72.00*tam3r
+            valor = precio3r
+        
+        elif obra["diametro"] != "":
+            tam2r = 3.14 * obra["diametro"]^2
+            precio2r = 72.00*tam3r
+            valor = precio2r
+        
+        if obra["peso"] != "":
+            preciop = 72.00*obra["peso"]
+            valor1 = preciop
+        
+        if valor1 > valor:
+            obra["costo"] = valor1
+        elif valor > valor1:
+            obra["costo"] = valor
+        elif valor == valor1:
+            obra["costo"] = 48.00
+
+        if obra["fecha"] == "":
+            obra["fecha"] = "2021"
+    
+    return TamañosObras
+
+
+def OrdenPrecio(PreciosObras):
+    
+    r = ms.sort(PreciosObras, CmpCosto)
+    i = 0
+    for obra in lt.iterator(PreciosObras):
+        if i < 5:
+            print(obra["titulo"] + "  " + obra["artistaid"] + "  " + obra["clasificacion"] + "  " + obra["fecha"] + "  " + obra["medio"] + "  " + obra["medio"] + "  " + obra["dimensiones"] + "  " + str(obra["costo"]))
+        i += 1
+    return PreciosObras
+
+    
+
+def OrdenAntiguedad(PreciosObras):
+
+    r = ms.sort(PreciosObras, CmpAntiguedad)
+    i = 0
+    for obra in lt.iterator(PreciosObras):
+        if i < 5:
+            print(obra["titulo"] + "  " + obra["artistaid"] + "  " + obra["clasificacion"] + "  " + obra["fecha"] + "  " + obra["medio"] + "  " + obra["medio"] + "  " + obra["dimensiones"] + "  " + str(obra["costo"]))
+        i += 1
+
+def CmpCosto(obra1, obra2):
+
+    return obra1["costo"]>obra2["costo"]
+
+def CmpAntiguedad(obra1, obra2):
+
+    return obra1["fecha"]<obra2["fecha"]
