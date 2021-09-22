@@ -264,7 +264,8 @@ while True:
         contar_nacionalidades = controller.contarNacionalidades(catalog)
         print(contar_nacionalidades)
         
-        nacionalidades = controller.ListaNacionalidades(catalog["artist"])
+        nacionalidades = 0
+        
 
 
     

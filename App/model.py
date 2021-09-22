@@ -106,30 +106,14 @@ def ListaNacionalidades(catalog):
 
 def ContarPaises(catalog):
 
+    
+  
 
-    interno = lt.newList("ARRAY_LIST",cmpfunction=None)
-    lt.addLast(interno,"Unknown")
-
-    for artist in lt.iterator(catalog["artist"]):
-        if not(lt.isPresent(interno,artist["Nationality"])):
-
-            lt.addLast(interno,artist["Nationality"])
+    return 0
             
 
             
-            
-    return interno
-
-
-
-
-    for artist in lt.iterator(catalog["artist"]):
-        if artist["Nationality"] in interno:
-            interno[artist["Nationality"]] +=1
-        elif artist["Nationality"] == ""  :
-            interno["Unknow"] += 1
-            
-    return interno
+        
    
 
          
