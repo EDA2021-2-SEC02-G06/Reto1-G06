@@ -328,3 +328,7 @@ def OrdenAntiguedad(PreciosObras):
 
     return model.OrdenAntiguedad(PreciosObras)
 
+def EncontrarArtista3(catalog, PreciosObras):
+
+    return model.EncontrarArtista3(catalog, PreciosObras)
+

@@ -362,11 +362,12 @@ while True:
         ListaDepto = controller.ListaDepto(depto, catalog)
         TamañosObras = controller.TamañosObras(ListaDepto)
         PreciosObras = controller.PreciosObras(TamañosObras)
+        EncontrarArtista3 = controller.EncontrarArtista3(catalog, PreciosObras)
         OrdenPrecio = controller.OrdenPrecio(PreciosObras)
         OrdenAntiguedad = controller.OrdenAntiguedad(PreciosObras)
         print("|          TITULO         |   ARTISTA   |      CLASIFICACION      |       FECHA       |       MEDIO       |     DIMENSIONES    |    COSTO    |")
         
-
+        
         
 
         #print (OrdenPrecio)

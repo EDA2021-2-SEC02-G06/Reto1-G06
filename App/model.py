@@ -600,4 +600,34 @@ def CmpAntiguedad(obra1, obra2):
 
     return obra1["fecha"]<obra2["fecha"]
 
-x = 1
+def EncontrarArtista3(catalog, PreciosObras):
+
+    for obra in lt.iterator(PreciosObras):
+        if "," in obra["artistaid"]:
+            r = obra["artistaid"].replace("[","").replace("]","")
+            s = r.split(",")
+            i = 0
+            for e in s:
+
+                for artista in lt.iterator(catalog["artist"]):
+                    if e == artista["ConstituentID"]:
+                        if i == 0:
+                            obra["artistaid"] = artista["DisplayName"]
+                        else:
+                            obra["artistaid"] = obra["aritstaid"] + "-" + artista["DisplayName"]
+                
+                i += 1
+        
+        else:
+            for artista in lt.iterator(catalog["artist"]):
+                if obra["artistaid"].replace("[","").replace("]","") == artista["ConstituentID"]:
+                    obra["artistaid"] = artista["DisplayName"]
+        
+
+    return PreciosObras
+        
+
+
+
+
+
