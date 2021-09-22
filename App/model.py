@@ -98,6 +98,7 @@ def addObras(catalog, obras):
 def ListaNacionalidades(catalog,nombres):
 
     nacionalidades = lt.newList("ARRAY_LIST",cmpfunction=None,)
+    """Cambio pequeño"""
     for elements in lt.iterator(nombres):
         for artista in lt.iterator(catalog["artist"]):
             if elements == artista["DisplayName"]:
