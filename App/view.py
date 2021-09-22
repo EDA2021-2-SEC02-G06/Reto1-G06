@@ -262,10 +262,12 @@ while True:
         print("El TOP 10 Países en el MOMA es: ")
 
         contar_nacionalidades = controller.contarNacionalidades(catalog)
+        
         print(contar_nacionalidades)
-        
-        nacionalidades = 0
-        
+        nacionalidades = controller.ListaNacionalidades(catalog,contar_nacionalidades)
+
+        print(nacionalidades)
+
 
 
     

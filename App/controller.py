@@ -124,9 +124,9 @@ def contarNacionalidades(catalog):
 
     
 
-def ListaNacionalidades(catalog):
+def ListaNacionalidades(catalog,lista):
 
-    return model.ListaNacionalidades(catalog)
+    return model.ListaNacionalidades(catalog,lista)
 # Funciones de ordenamiento
 
 def aplicarAlgoritmoObras(lista,tipo):

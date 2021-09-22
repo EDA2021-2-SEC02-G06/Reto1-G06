@@ -95,32 +95,44 @@ def addObras(catalog, obras):
     lt.addLast(catalog['obras'], obras) 
 
   
-def ListaNacionalidades(catalog):
+def ListaNacionalidades(catalog,nombres):
 
     nacionalidades = lt.newList("ARRAY_LIST",cmpfunction=None,)
+    for elements in lt.iterator(nombres):
+        for artista in lt.iterator(catalog["artist"]):
+            if elements == artista["DisplayName"]:
+                lt.addLast(nacionalidades,artista["Nationality"])
+    return nacionalidades
 
-    for artist in lt.iterator(catalog):
-        nacionalidad = int(artist["BeginDate"])
-        if (año>=inicio) and (año <= fin) and (año != None):
-            model.addArtist(retorno,artist)
+    
 
 def ContarPaises(catalog):
 
-    
-  
+    ListaNombres= lt.newList("ARRAY_LIST",cmpfunction=None)
 
-    return 0
-            
+    for obra in lt.iterator(catalog["obras"]):
+        if "," in obra["ConstituentID"]:
+            r = obra["ConstituentID"].replace("[","").replace("]","")
+            s = r.split(",")
+            i = 0
+            for e in s:
 
-            
+                for artista in lt.iterator(catalog["artist"]):
+                    if e == artista["ConstituentID"]:
+                        if i == 0:
+                            
+                            lt.addLast(ListaNombres,artista["DisplayName"])
+                        else:
+                            
+                            lt.addLast(ListaNombres,artista["DisplayName"])
+                
+                i += 1
         
-   
-
-         
-
-    
-
-
+        else:
+            for artista in lt.iterator(catalog["artist"]):
+                if obra["ConstituentID"].replace("[","").replace("]","") == artista["ConstituentID"]:
+                    lt.addLast(ListaNombres,artista)
+    return ListaNombres
 # Funciones para creacion de datos
 def sublista(lista,tamaño):
     lista_dos = lista["obras"]
