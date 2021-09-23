@@ -147,26 +147,7 @@ def OrdenNacionalidades(Lista):
 def CmpNacionalidades(obra1, obra2):
 
     return obra1<obra2
-def OcurrenciasNacionalidades(lista):
 
-    contadas = lt.newList("ARRAY_LIST",cmpfunction=None)
-
-
-    for elements in lt.iterator(lista):
-        if elements != "" or elements != None or elements != "Nationality Unknown":
-            nacio = elements
-            ocurrencia = 0
-        else:
-            nacio= "Unknown"
-            ocurrencia = 0
-        for elements in lt.iterator(lista):
-            if elements == nacio:
-                ocurrencia +=1
-        lt.addLast(contadas,{nacio:ocurrencia})
-
-
-
-    return contadas
     
 # Funciones para creacion de datos
 def sublista(lista,tamaño):
@@ -364,6 +345,7 @@ def ObrasPorArtista(Id_A, catalogo):
 
 def ListaDictReq4(catalogo, Id_A):
     Ldr4 = []
+    
     for obra in lt.iterator(catalogo["obras"]):
         dicit = {"metodo": obra["Medium"], "numero": 1, "obras": [obra["ObjectID"]]}
         if "," in obra["ConstituentID"]:
@@ -623,7 +605,7 @@ def OrdenPrecio(PreciosObras):
     i = 0
     for obra in lt.iterator(PreciosObras):
         if i < 5:
-            print(obra["titulo"] + "  " + obra["artistaid"] + "  " + obra["clasificacion"] + "  " + obra["fecha"] + "  " + obra["medio"] + "  " + obra["medio"] + "  " + obra["dimensiones"] + "  " + str(obra["costo"]))
+            print(obra["titulo"] + " - " + obra["artistaid"] + " - " + obra["clasificacion"] + " - " + obra["fecha"] + " - " + obra["medio"] + " - " + obra["medio"] + " - " + obra["dimensiones"] + " - " + str(obra["costo"]))
         i += 1
     return PreciosObras
 

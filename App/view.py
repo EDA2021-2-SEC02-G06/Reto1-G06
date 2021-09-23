@@ -29,6 +29,7 @@ import sys
 import controller
 from datetime import datetime as dt
 from DISClib.ADT import list as lt
+import time
 
 assert cf
 default_limit = 1000
@@ -126,6 +127,7 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
+        StartTime = time.process_time()
         tipo = opcionesLista()
         print(tipo)
         print("Cargando información de los archivos ....")
@@ -135,6 +137,9 @@ while True:
         print("Obras cargadas: " + str(lt.size(catalog["obras"])))
         print("Últimos tres Artistas: " + str(controller.getLastArtist(catalog)))
         print("Últimas tres Obras: " + str(controller.getLastObras(catalog)))
+        StopTime = time.process_time()
+        ElapsedTime = (StopTime - StartTime)*1000
+        print("Tiempo de ejecución de:  " + str(ElapsedTime) + " mseg")
         
 
     
@@ -142,6 +147,7 @@ while True:
 
         añoinicio = int(input("Ingrese el año inicial:"))
         añofin = int(input("Ingrese el año final:"))
+        StartTime = time.process_time()
         artistlista = initArtistRetorno()
         loadDataArtist(catalog,artistlista,añoinicio,añofin)
         primerosartistas = controller.getFirstArtist(artistlista)
@@ -168,10 +174,15 @@ while True:
             nacio = ultimosartista["elements"][i]["Nationality"]
             genero = ultimosartista["elements"][i]["Gender"]
             print(" "+name+"        "+"     "+begin+"   "+"     "+death+"    "+"     "+nacio+"   "+"     "+genero)
-    
+
+        StopTime = time.process_time()
+        ElapsedTime = (StopTime - StartTime)*1000
+        print("Tiempo de ejecución de:  " + str(ElapsedTime) + " mseg")
+
     elif int(inputs[0]) == 3:
         fecha_inicio = (input("Ingrese la fecha inicial (AAAA-MM-DD):"))
         fecha_fin = (input("Ingrese la fecha final (AAAA-MM-DD):"))
+        StartTime = time.process_time()
         
         obralista = initObrasRetorno()
         loadDataObras(catalog,obralista,fecha_inicio,fecha_fin)
@@ -230,7 +241,9 @@ while True:
                 print("______________________________________________________")
 
 
-        print("Tiempo de ejecución : " + str(ordenada[0]))
+        StopTime = time.process_time()
+        ElapsedTime = (StopTime - StartTime)*1000
+        print("Tiempo de ejecución de:  " + str(ElapsedTime) + " mseg")
 
        
 
@@ -243,6 +256,7 @@ while True:
     elif int(inputs[0]) == 4:
     
         nom = input("¿Cuál es el nombre del artista?: ")
+        StartTime = time.process_time()
         Id_A = controller.EncontrarArtista2(nom, catalog)
         ObrasNom = controller.ObrasPorArtista(Id_A, catalog)
         print(nom + " con el ID en el MoMa número " + str(Id_A) + " tiene " + str(ObrasNom) + " a su nombre en el museo.")
@@ -257,8 +271,12 @@ while True:
             print(element["titulo"] + " | " + element["id"] + " | " + element["fecha"] + " | " + element["tecnica"]+ " | " + element["dimensiones"])
             print("---------------------------------------------------------------------------------------------------------------------------------------------------")
 
+        StopTime = time.process_time()
+        ElapsedTime = (StopTime - StartTime)*1000
+        print("Tiempo de ejecución de:  " + str(ElapsedTime) + " mseg")
 
     elif int(inputs[0]) == 5:
+        StartTime = time.process_time()
         print("Bienvenido a la clasificación por nacionalida de las obras. ")
         print("El TOP 10 Países en el MOMA es: ")
         contar_nacionalidades = controller.contarNacionalidades(catalog)
@@ -274,7 +292,9 @@ while True:
         print("________________-")
         
         print(nacio_contadas)
-
+        StopTime = time.process_time()
+        ElapsedTime = (StopTime - StartTime)*1000
+        print("Tiempo de ejecución de:  " + str(ElapsedTime) + " mseg")
 
 
 
@@ -369,21 +389,22 @@ while True:
 
     elif int(inputs[0]) == 6:
         depto = input("¿Cuál es el departamento que desea trasladar?: ")
+        StartTime = time.process_time()
         ListaDepto = controller.ListaDepto(depto, catalog)
         TamañosObras = controller.TamañosObras(ListaDepto)
         PreciosObras = controller.PreciosObras(TamañosObras)
         EncontrarArtista3 = controller.EncontrarArtista3(catalog, PreciosObras)
+        print("|          TITULO         |   ARTISTA   |      CLASIFICACION      |       FECHA       |       MEDIO       |     DIMENSIONES    |    COSTO    |")
         OrdenPrecio = controller.OrdenPrecio(PreciosObras)
         OrdenAntiguedad = controller.OrdenAntiguedad(PreciosObras)
-        print("|          TITULO         |   ARTISTA   |      CLASIFICACION      |       FECHA       |       MEDIO       |     DIMENSIONES    |    COSTO    |")
+       
         
-        
+        StopTime = time.process_time()
+        ElapsedTime = (StopTime - StartTime)*1000
+        print("Tiempo de ejecución de:  " + str(ElapsedTime) + " mseg")
         
 
-        #print (OrdenPrecio)
-        #print("---------------------------------------------------------------------------------------")
-        #print(OrdenAntiguedad)
-        print("plox")
+        
         
             
 
