@@ -276,6 +276,7 @@ while True:
         print("Tiempo de ejecución de:  " + str(ElapsedTime) + " mseg")
 
     elif int(inputs[0]) == 5:
+        """
         StartTime = time.process_time()
         print("Bienvenido a la clasificación por nacionalida de las obras. ")
         print("El TOP 10 Países en el MOMA es: ")
@@ -295,6 +296,8 @@ while True:
         StopTime = time.process_time()
         ElapsedTime = (StopTime - StartTime)*1000
         print("Tiempo de ejecución de:  " + str(ElapsedTime) + " mseg")
+        """
+        print("This requirement will be available in the future")
 
 
 
