@@ -573,17 +573,17 @@ def PreciosObras(TamañosObras):
             valor = precio2
         
         elif obra["altura"] and obra["diametro"] != "":
-            tam3r = 3.14 * obra["diametro"]^2 * obra["altura"]
+            tam3r = 3.14 * (obra["diametro"]**2) * obra["altura"]
             precio3r = 72.00*tam3r
             valor = precio3r
         
         elif obra["diametro"] != "":
-            tam2r = 3.14 * obra["diametro"]^2
-            precio2r = 72.00*tam3r
+            tam2r = 3.14 * obra["diametro"]**2
+            precio2r = 72.00*tam2r
             valor = precio2r
         
         if obra["peso"] != "":
-            preciop = 72.00*obra["peso"]
+            preciop = 72.00*float(obra["peso"])
             valor1 = preciop
         
         if valor1 > valor:
