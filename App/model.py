@@ -147,7 +147,26 @@ def OrdenNacionalidades(Lista):
 def CmpNacionalidades(obra1, obra2):
 
     return obra1<obra2
+def OcurrenciasNacionalidades(lista):
 
+    contadas = lt.newList("ARRAY_LIST",cmpfunction=None)
+
+
+    for elements in lt.iterator(lista):
+        if elements != "" or elements != None or elements != "Nationality Unknown":
+            nacio = elements
+            ocurrencia = 0
+        else:
+            nacio= "Unknown"
+            ocurrencia = 0
+        for elements in lt.iterator(lista):
+            if elements == nacio:
+                ocurrencia +=1
+        lt.addLast(contadas,{nacio:ocurrencia})
+
+
+
+    return contadas
     
 # Funciones para creacion de datos
 def sublista(lista,tamaño):

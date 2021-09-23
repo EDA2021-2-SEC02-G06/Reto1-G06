@@ -23,6 +23,7 @@
 
 
 
+
 import config as cf
 import sys
 import controller
@@ -262,8 +263,18 @@ while True:
         print("El TOP 10 Países en el MOMA es: ")
         contar_nacionalidades = controller.contarNacionalidades(catalog)
         nacionalidades = controller.ListaNacionalidades(catalog,contar_nacionalidades)
+
         orden = controller.OrdenNacionalidades(nacionalidades)
+        nacio_contadas = controller.OcurrenciasNacionalidades(orden)
+        print(contar_nacionalidades)
+        print("________________-")
+        print(nacionalidades)
+        print("________________-")
         print(orden)
+        print("________________-")
+        
+        print(nacio_contadas)
+
 
 
 

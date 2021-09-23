@@ -131,7 +131,9 @@ def ListaNacionalidades(catalog,lista):
 def OrdenNacionalidades(Lista):
 
     return model.OrdenNacionalidades(Lista)
-    
+
+def OcurrenciasNacionalidades(catalog):
+    return model.OcurrenciasNacionalidades(catalog)
 # Funciones de ordenamiento
 
 
