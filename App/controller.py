@@ -127,7 +127,13 @@ def contarNacionalidades(catalog):
 def ListaNacionalidades(catalog,lista):
 
     return model.ListaNacionalidades(catalog,lista)
+
+def OrdenNacionalidades(Lista):
+
+    return model.OrdenNacionalidades(Lista)
+    
 # Funciones de ordenamiento
+
 
 def aplicarAlgoritmoObras(lista,tipo):
     cmp = model.cmpArtworkByDateAcquired

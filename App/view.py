@@ -260,13 +260,10 @@ while True:
     elif int(inputs[0]) == 5:
         print("Bienvenido a la clasificación por nacionalida de las obras. ")
         print("El TOP 10 Países en el MOMA es: ")
-
         contar_nacionalidades = controller.contarNacionalidades(catalog)
-        
-        print(contar_nacionalidades)
         nacionalidades = controller.ListaNacionalidades(catalog,contar_nacionalidades)
-
-        print(nacionalidades)
+        orden = controller.OrdenNacionalidades(nacionalidades)
+        print(orden)
 
 
 
