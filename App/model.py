@@ -95,15 +95,7 @@ def addObras(catalog, obras):
     lt.addLast(catalog['obras'], obras) 
 
   
-def ListaNacionalidades(catalog,nombres):
 
-    nacionalidades = lt.newList("ARRAY_LIST",cmpfunction=None,)
-    """Cambio pequeño"""
-    for elements in lt.iterator(nombres):
-        for artista in lt.iterator(catalog["artist"]):
-            if elements == artista["DisplayName"]:
-                lt.addLast(nacionalidades,artista["Nationality"])
-    return nacionalidades
 
     
 
@@ -132,8 +124,31 @@ def ContarPaises(catalog):
         else:
             for artista in lt.iterator(catalog["artist"]):
                 if obra["ConstituentID"].replace("[","").replace("]","") == artista["ConstituentID"]:
-                    lt.addLast(ListaNombres,artista)
+                    lt.addLast(ListaNombres,artista["DisplayName"])
     return ListaNombres
+
+
+
+def ListaNacionalidades(catalog,nombres):
+
+    nacionalidades = lt.newList("ARRAY_LIST")
+    """Cambio pequeño"""
+    for elements in lt.iterator(nombres):
+        for artista in lt.iterator(catalog["artist"]):
+            if elements == artista["DisplayName"]:
+                lt.addLast(nacionalidades,artista["Nationality"])
+    return nacionalidades
+
+def OrdenNacionalidades(Lista):
+
+    r = ms.sort(Lista, CmpNacionalidades)
+    return Lista
+
+def CmpNacionalidades(obra1, obra2):
+
+    return obra1<obra2
+
+    
 # Funciones para creacion de datos
 def sublista(lista,tamaño):
     lista_dos = lista["obras"]
@@ -330,7 +345,6 @@ def ObrasPorArtista(Id_A, catalogo):
 
 def ListaDictReq4(catalogo, Id_A):
     Ldr4 = []
-    #Ldr4.append({"metodo": "Zr", "numero": 0})
     for obra in lt.iterator(catalogo["obras"]):
         dicit = {"metodo": obra["Medium"], "numero": 1, "obras": [obra["ObjectID"]]}
         if "," in obra["ConstituentID"]:
