@@ -74,7 +74,7 @@ def loadArtist(catalog):
     se lee el archivo y se cicla para añadir el artista a una lista con la llamada a
     la función addArtist.
     """
-    artistfile = cf.data_dir + 'MOMA/Artists-utf8-small.csv'
+    artistfile = cf.data_dir + 'MOMA/Artists-utf8-large.csv'
     input_file = csv.DictReader(open(artistfile, encoding='utf-8'))
     for artista in input_file:
         model.addArtist(catalog, artista)
@@ -85,7 +85,7 @@ def loadObras(catalog):
     se lee el archivo y se cicla para añadir la obra a una lista con la llamada a
     la función addObras..
     """
-    obrasfile = cf.data_dir + 'MOMA/Artworks-utf8-small.csv'
+    obrasfile = cf.data_dir + 'MOMA/Artworks-utf8-large.csv'
     input_file = csv.DictReader(open(obrasfile, encoding='utf-8'))
     for obra in input_file:
         model.addObras(catalog, obra)
